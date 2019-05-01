@@ -17,10 +17,7 @@ package com.fernandocejas.sample.core.interactor
 
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.functional.Either
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.*
 
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
@@ -35,8 +32,8 @@ abstract class UseCase<out Type, in Params> where Type : Any {
     abstract suspend fun run(params: Params): Either<Failure, Type>
 
     fun execute(onResult: (Either<Failure, Type>) -> Unit, params: Params) {
-        val job = async(CommonPool) { run(params) }
-        launch(UI) { onResult.invoke(job.await()) }
+        val job = GlobalScope.async(Dispatchers.Default) { run(params) }
+        GlobalScope.launch(Dispatchers.Main) { onResult.invoke(job.await()) }
     }
 
     class None

@@ -7,7 +7,6 @@ android {
   def config = rootProject.extensions.getByName("ext")
 
   compileSdkVersion config["compile_sdk"]
-  buildToolsVersion config["build_tools"]
 
   defaultConfig {
     applicationId config["application_id"]
@@ -87,7 +86,7 @@ dependencies {
   implementation applicationDependencies.glide
   implementation applicationDependencies.koin
   implementation applicationDependencies.koinAndroid
-  implementation applicationDependencies.koinAndroidArch
+  implementation applicationDependencies.koinAndroidViewModel
   implementation applicationDependencies.retrofit
   implementation applicationDependencies.okhttpLoggingInterceptor
 

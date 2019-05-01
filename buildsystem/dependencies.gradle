@@ -13,8 +13,8 @@ ext {
     glide_version = '4.0.0'
 
     //Third party libraries
-    kotlin_coroutines_version = '0.22.1'
-    koin_version = '0.9.3'
+    kotlin_coroutines_version = '1.0.0'
+    koin_version = '2.0.0-rc-2'
     retrofit_version = '2.3.0'
     okhttp_logging_interceptor_version = '3.8.1'
 
@@ -46,7 +46,7 @@ ext {
             glide                   : "com.github.bumptech.glide:glide:$glide_version",
             koin                    : "org.koin:koin-core:$koin_version",
             koinAndroid             : "org.koin:koin-android:$koin_version",
-            koinAndroidArch         : "org.koin:koin-android-architecture:$koin_version",
+            koinAndroidViewModel    : "org.koin:koin-android-viewmodel:$koin_version",
             retrofit                : "com.squareup.retrofit2:converter-gson:$retrofit_version",
             okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
 
