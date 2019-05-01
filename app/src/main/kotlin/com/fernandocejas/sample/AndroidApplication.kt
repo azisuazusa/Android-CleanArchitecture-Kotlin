@@ -17,9 +17,9 @@ package com.fernandocejas.sample
 
 import android.app.Application
 import com.fernandocejas.sample.core.di.applicationModule
-import com.fernandocejas.sample.core.di.moviesModule
 import com.squareup.leakcanary.LeakCanary
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class AndroidApplication : Application() {
 
@@ -29,7 +29,10 @@ class AndroidApplication : Application() {
         this.initializeLeakDetection()
     }
 
-    private fun injectMembers() = startKoin(this, listOf(applicationModule, moviesModule))
+    private fun injectMembers() = startKoin {
+        androidContext(this@AndroidApplication)
+        modules(listOf(applicationModule))
+    }
 
     private fun initializeLeakDetection() {
         if (BuildConfig.DEBUG) LeakCanary.install(this)
